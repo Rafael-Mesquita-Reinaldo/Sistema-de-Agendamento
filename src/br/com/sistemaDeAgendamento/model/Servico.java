@@ -1,0 +1,33 @@
+package br.com.sistemaDeAgendamento.model;
+
+public class Servico {
+    private final int id;
+    private String descricao;
+    private int duracaoMinutos;
+
+    public Servico(int id, String descricao, int duracaoMinutos) {
+        this.id = id;
+        this.descricao = descricao;
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getDuracaoMinutos() {
+        return duracaoMinutos;
+    }
+
+    public void setDuracaoMinutos(int duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
+    }
+}
