@@ -1,13 +1,12 @@
 package br.com.sistemaDeAgendamento.model;
 
 public class Cliente {
-    private final int id;
+    private int id;
     private String nome;
     private String telefone;
     private String email;
 
-    public Cliente(int id,String nome,String telefone, String email){
-        this.id = id;
+    public Cliente(String nome,String telefone, String email){
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;

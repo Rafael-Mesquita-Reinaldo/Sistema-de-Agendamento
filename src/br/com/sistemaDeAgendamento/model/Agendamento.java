@@ -3,14 +3,13 @@ package br.com.sistemaDeAgendamento.model;
 import java.time.LocalDateTime;
 
 public class Agendamento {
-    private final int id;
+    private  int id;
     private Cliente cliente;
     private Profissional profissional;
     private Servico servico;
     private LocalDateTime dataHora;
 
-    public Agendamento(int id, Cliente cliente, Profissional profissional, Servico servico, LocalDateTime dataHora) {
-        this.id = id;
+    public Agendamento( Cliente cliente, Profissional profissional, Servico servico, LocalDateTime dataHora) {
         this.cliente = cliente;
         this.profissional = profissional;
         this.servico = servico;

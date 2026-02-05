@@ -3,12 +3,11 @@ package br.com.sistemaDeAgendamento.model;
 import java.util.Properties;
 
 public class Profissional {
-    private final int id;
+    private int id;
     private String nome;
     private String especialidade;
 
-    public Profissional(int id, String nome,String especialidade){
-        this.id = id;
+    public Profissional( String nome,String especialidade){
         this.nome = nome;
         this.especialidade = especialidade;
     }

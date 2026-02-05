@@ -1,12 +1,11 @@
 package br.com.sistemaDeAgendamento.model;
 
 public class Servico {
-    private final int id;
+    private  int id;
     private String descricao;
     private int duracaoMinutos;
 
-    public Servico(int id, String descricao, int duracaoMinutos) {
-        this.id = id;
+    public Servico( String descricao, int duracaoMinutos) {
         this.descricao = descricao;
         this.duracaoMinutos = duracaoMinutos;
     }
