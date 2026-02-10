@@ -12,6 +12,13 @@ public class Cliente {
         this.email = email;
     }
 
+    public Cliente(int id,String nome,String telefone, String email){
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }
@@ -38,5 +45,10 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\nNome: %s\nTelefone: %s\nEmail: %s\n",getId(),getNome(),getTelefone(),getEmail());
     }
 }
