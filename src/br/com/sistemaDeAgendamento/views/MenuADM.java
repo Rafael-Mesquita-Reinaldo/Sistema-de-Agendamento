@@ -27,7 +27,7 @@ public class MenuADM {
     }
 
     public void opcoesProfissional(Scanner scanner){
-        System.out.print("1 - Cadastrar profissional\n2 - Listar proficionais\n3 - Atualizar dados profissional\n4 - Deletar profissional\nEscolha(Digita o número): ");
+        System.out.print("1 - Cadastrar profissional\n2 - Listar profissionais\n3 - Atualizar dados profissional\n4 - Deletar profissional\nEscolha(Digita o número): ");
         int opcaoProfissional = scanner.nextInt();
         scanner.nextLine();
         switch (opcaoProfissional){
