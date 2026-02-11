@@ -1,13 +1,17 @@
 package br.com.sistemaDeAgendamento.views;
 
 import br.com.sistemaDeAgendamento.controller.ClienteController;
+import br.com.sistemaDeAgendamento.controller.ProfissionalController;
 import br.com.sistemaDeAgendamento.model.Cliente;
+import br.com.sistemaDeAgendamento.model.Profissional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuADM {
     private ClienteController clienteController = new ClienteController();
+    private ProfissionalController profissionalController = new ProfissionalController();
 
 
     public void menu(Scanner scanner){
@@ -16,8 +20,98 @@ public class MenuADM {
         scanner.nextLine();
         if(opcaoMenu == 1){
             opcoesCliente(scanner);
+        } else if (opcaoMenu == 2) {
+            opcoesProfissional(scanner);
         }
 
+    }
+
+    public void opcoesProfissional(Scanner scanner){
+        System.out.print("1 - Cadastrar profissional\n2 - Listar proficionais\n3 - Atualizar dados profissional\n4 - Deletar profissional\nEscolha(Digita o número): ");
+        int opcaoProfissional = scanner.nextInt();
+        scanner.nextLine();
+        switch (opcaoProfissional){
+            case 1:
+                cadastrarProfissional(scanner);
+                break;
+            case 2:
+                listarProfissional(scanner);
+                break;
+            case 3:
+                atualizarProfissional(scanner);
+                break;
+            case 4:
+                deletarProfissional(scanner);
+                break;
+            default:
+                System.out.println("Opção inválida");
+        }
+    }
+
+    private void deletarProfissional(Scanner scanner) {
+        System.out.print("ID do profissional: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        profissionalController.deletarProfissional(id);
+        System.out.println("Profissional deletado com sucesso!");
+
+    }
+
+    private void atualizarProfissional(Scanner scanner) {
+        System.out.print("Deseja atulizar qual dado\n1 - nome\n2 - especialidade\n(Digita o número):");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        if (opcao == 1){
+            System.out.print("ID do profissional: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Novo nome: ");
+            String nomeNovo = scanner.nextLine();
+
+            profissionalController.atualizarProNome(id,nomeNovo);
+            System.out.println("Nome alterado com sucesso");
+
+        } else if (opcao == 2) {
+            System.out.print("ID do profissional: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Nova Especialidade: ");
+            String nomeNovo = scanner.nextLine();
+
+            profissionalController.atualizarProEspecialidade(id,nomeNovo);
+            System.out.println("Especialidade alterado com sucesso");
+
+        }
+    }
+
+    private void listarProfissional(Scanner scanner) {
+        List<Profissional> profissionais = profissionalController.listarProfissional();
+        if(profissionais.isEmpty()){
+            throw new RuntimeException("Nenhum profissional cadastrado");
+        }
+        for(Profissional profissional : profissionais){
+            System.out.println(profissional);
+        }
+
+    }
+
+    private void cadastrarProfissional(Scanner scanner){
+
+        System.out.print("nome:");
+        String nome = scanner.nextLine();
+
+        System.out.print("Especialidade:");
+        String especialidade = scanner.nextLine();
+
+        try {
+            profissionalController.cadastrarProfissional(nome,especialidade);
+            System.out.println("Profissional cadastrado com sucesso!");
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void opcoesCliente(Scanner scanner){

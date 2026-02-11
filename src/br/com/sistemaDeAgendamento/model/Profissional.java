@@ -12,6 +12,12 @@ public class Profissional {
         this.especialidade = especialidade;
     }
 
+    public Profissional(int id,String nome,String especialidade){
+        this.id = id;
+        this.nome = nome;
+        this.especialidade = especialidade;
+    }
+
     public int getId() {
         return id;
     }
@@ -30,5 +36,10 @@ public class Profissional {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\nNome: %s\nEspecialidade: %s",getId(),getNome(),getEspecialidade());
     }
 }
