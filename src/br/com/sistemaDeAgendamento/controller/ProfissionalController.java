@@ -21,8 +21,8 @@ public class ProfissionalController {
     public void atualizarProNome(int id, String nomeNovo) {
         profissionalService.atualizarProNome(id,nomeNovo);
     }
-    public void atualizarProEspecialidade(int id, String nomeNovo) {
-        profissionalService.atualizarProEspecialidade(id,nomeNovo);
+    public void atualizarProEspecialidade(int id, String novaEspecialidade) {
+        profissionalService.atualizarProEspecialidade(id,novaEspecialidade);
     }
 
     public void deletarProfissional(int id) {

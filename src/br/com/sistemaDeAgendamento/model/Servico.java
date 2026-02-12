@@ -10,6 +10,12 @@ public class Servico {
         this.duracaoMinutos = duracaoMinutos;
     }
 
+    public Servico(int id, String descricao, int duracaoMinutos) {
+        this.id = id;
+        this.descricao = descricao;
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
     public int getId() {
         return id;
     }
@@ -28,5 +34,10 @@ public class Servico {
 
     public void setDuracaoMinutos(int duracaoMinutos) {
         this.duracaoMinutos = duracaoMinutos;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\nDescrição do Serviço: %s\nDuração do serviço %d min\n",getId(),getDescricao(),getDuracaoMinutos());
     }
 }
