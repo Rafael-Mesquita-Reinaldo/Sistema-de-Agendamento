@@ -9,6 +9,7 @@ public class Agendamento {
     private Servico servico;
     private LocalDateTime dataHora;
 
+
     public Agendamento( Cliente cliente, Profissional profissional, Servico servico, LocalDateTime dataHora) {
         this.cliente = cliente;
         this.profissional = profissional;
