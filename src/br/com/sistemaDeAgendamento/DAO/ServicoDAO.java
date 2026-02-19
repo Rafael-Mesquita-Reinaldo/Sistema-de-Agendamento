@@ -14,15 +14,7 @@ public class ServicoDAO extends BaseDAO {
 
     public boolean cadastrarServico(Servico servico){
         String sql  = "INSERT INTO servicos(descricao,duracaoMinutos) VALUES(?,?)";
-        try(Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,servico.getDescricao());
-            prestmt.setInt(2,servico.getDuracaoMinutos());
-            return prestmt.executeUpdate()>0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao cadastrar Serviço");
-        }
+        return cadastrar(sql,servico.getDescricao(),servico.getDuracaoMinutos());
     }
 
     public List<Servico> listarServico() {
@@ -45,23 +37,16 @@ public class ServicoDAO extends BaseDAO {
 
     public boolean atualizarServDescricao(int id, String novaDescricao) {
         String sql = "UPDATE servicos SET descricao = ? WHERE id = ?";
-        return  executarUpdate(sql,novaDescricao,id);
+        return  atualizar(sql,novaDescricao,id);
     }
 
     public boolean atualizarServDuracao(int id, int novaDuracao) {
         String sql = "UPDATE servicos SET duracaoMinutos = ? WHERE id = ?";
-        return executarUpdate(sql, novaDuracao, id);
+        return atualizar(sql, novaDuracao, id);
     }
 
     public boolean deletarServico(int id) {
         String sql = "DELETE FROM servicos WHERE id = ?";
-        try(Connection connection = ConnectionFactory.getConexao()) {
-            PreparedStatement preStmt = connection.prepareStatement(sql);
-            preStmt.setInt(1,id);
-            return preStmt.executeUpdate()>0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao deletar serviço");
-        }
+        return deletar(sql,id);
     }
 }

@@ -7,21 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO {
+public class ClienteDAO  extends BaseDAO{
 
 
     public boolean incluirCli(Cliente cliente){
         String sql = "INSERT INTO clientes(nome,telefone,email) VALUES(?,?,?)";
-        try (Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1, cliente.getNome());
-            prestmt.setString(2, cliente.getTelefone());
-            prestmt.setString(3, cliente.getEmail());
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao cadastrar cliente");
-        }
-
+        return cadastrar(sql,cliente.getNome(),cliente.getTelefone(),cliente.getEmail());
     }
 
     public List<Cliente> listarCli(){
@@ -37,7 +28,6 @@ public class ClienteDAO {
                clientes.add(cliente);
            }
 
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar Clientes");
         }
@@ -46,53 +36,23 @@ public class ClienteDAO {
 
     public boolean atualizarCliNome(int id,String nomeNovo){
         String sql = "UPDATE clientes SET nome = ? WHERE id  = ?";
-        try(Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,nomeNovo);
-            prestmt.setInt(2,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao alterar o nome");
-        }
-
+        return atualizar(sql,nomeNovo,id);
     }
 
     public boolean atualizarCliTelefone(int id,String novoTelefone){
         String sql = "UPDATE clientes SET telefone = ? WHERE id  = ?";
-
-        try(Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,novoTelefone);
-            prestmt.setInt(2,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao alterar o telefone");
-        }
+        return atualizar(sql,novoTelefone,id);
 
     }
 
     public boolean atualizarCliEmail(int id,String novoEmail){
         String sql = "UPDATE clientes SET email = ? WHERE id  = ?";
-
-        try(Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,novoEmail);
-            prestmt.setInt(2,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao alterar o Email");
-        }
+        return atualizar(sql,novoEmail,id);
 
     }
 
     public boolean deletarCli(int id){
         String sql = "DELETE FROM clientes WHERE id = ?";
-        try (Connection connection = ConnectionFactory.getConexao()){
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setInt(1,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Cliente não encontrado");
-        }
+        return deletar(sql,id);
     }
 }

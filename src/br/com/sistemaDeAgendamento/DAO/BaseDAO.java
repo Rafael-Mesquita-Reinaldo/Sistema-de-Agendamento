@@ -6,19 +6,44 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 public abstract class BaseDAO {
 
-    public boolean executarUpdate(String sql, Object... parametros){
+    public boolean cadastrar(String sql,Object... parametros){
+        try(Connection connection  = ConnectionFactory.getConexao()){
+            PreparedStatement preStmt = connection.prepareStatement(sql);
+            for (int i = 0; i < parametros.length; i++) {
+                preStmt.setObject(i+1,parametros[i]);
+            }
+            return preStmt.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao criar dados no Banco",e);
+        }
+    }
+
+    public boolean atualizar(String sql, Object... parametros){
        try(Connection connection = ConnectionFactory.getConexao()){
-           PreparedStatement prestmt = connection.prepareStatement(sql);
+           PreparedStatement preStmt = connection.prepareStatement(sql);
            for (int i = 0; i < parametros.length; i++) {
-               prestmt.setObject(i+1,parametros[i]);
+               preStmt.setObject(i+1,parametros[i]);
            }
-           return prestmt.executeUpdate()>0;
+           return preStmt.executeUpdate()>0;
        } catch (SQLException e) {
-           throw new RuntimeException("Erro ao executar operação no Banco",e);
+           throw new RuntimeException("Erro ao atualizar dados no Banco",e);
        }
 
+    }
+
+    public boolean deletar(String sql ,Object... parametros){
+        try(Connection connection = ConnectionFactory.getConexao()){
+            PreparedStatement preStmt = connection.prepareStatement(sql);
+            for (int i = 0; i < parametros.length; i++) {
+                preStmt.setObject(i+1,parametros[i]);
+            }
+            return preStmt.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao deletar dados do Banco",e);
+        }
     }
 
 }

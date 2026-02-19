@@ -10,19 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfissionalDAO {
+public class ProfissionalDAO extends BaseDAO {
 
     public boolean incluirProfissional(Profissional profissional) {
         String sql = "INSERT INTO profissionais(nome,especialidade) VALUES(?,?)";
-        try (Connection connection = ConnectionFactory.getConexao()) {
-            PreparedStatement preStmt = connection.prepareStatement(sql);
-            preStmt.setString(1, profissional.getNome());
-            preStmt.setString(2, profissional.getEspecialidade());
-            return preStmt.executeUpdate()>0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao cadastrar profissional");
-        }
+       return cadastrar(sql,profissional.getNome(),profissional.getEspecialidade());
     }
 
     public List<Profissional> listarProfissional() {
@@ -45,37 +37,16 @@ public class ProfissionalDAO {
 
     public boolean atualizarProNome(int id, String nomeNovo) {
         String sql = "UPDATE profissionais SET nome = ? WHERE id  = ?";
-        try(Connection connection  = ConnectionFactory.getConexao()) {
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,nomeNovo);
-            prestmt.setInt(2,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar o profissional");
-        }
+        return atualizar(sql,nomeNovo,id);
     }
 
     public boolean atualizarProEspecialidade(int id, String especialidadeNova) {
         String sql = "UPDATE profissionais SET especialidade = ? WHERE id  = ?";
-        try(Connection connection  = ConnectionFactory.getConexao()) {
-            PreparedStatement prestmt = connection.prepareStatement(sql);
-            prestmt.setString(1,especialidadeNova);
-            prestmt.setInt(2,id);
-            return prestmt.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar o profissional");
-        }
+       return atualizar(sql,especialidadeNova,id);
     }
 
     public boolean deletarProfissional(int id) {
         String sql = "DELETE FROM profissionais WHERE id = ?";
-        try(Connection connection = ConnectionFactory.getConexao()) {
-            PreparedStatement preStmt = connection.prepareStatement(sql);
-            preStmt.setInt(1,id);
-            return preStmt.executeUpdate()>0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao deletar profissional");
-        }
+        return deletar(sql,id);
     }
 }
