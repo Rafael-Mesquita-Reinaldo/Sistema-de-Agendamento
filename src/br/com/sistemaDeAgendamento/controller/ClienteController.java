@@ -31,4 +31,8 @@ public class ClienteController {
         clienteService.deletarCli(id);
 
     }
+
+    public Cliente selecionarCli(String numeroCliente) {
+        return clienteService.selecionarCli(numeroCliente);
+    }
 }

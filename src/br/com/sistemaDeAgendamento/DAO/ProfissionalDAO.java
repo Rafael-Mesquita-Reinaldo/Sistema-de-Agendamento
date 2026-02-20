@@ -2,6 +2,7 @@ package br.com.sistemaDeAgendamento.DAO;
 
 import br.com.sistemaDeAgendamento.infra.ConnectionFactory;
 import br.com.sistemaDeAgendamento.model.Profissional;
+import br.com.sistemaDeAgendamento.model.Servico;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,5 +49,23 @@ public class ProfissionalDAO extends BaseDAO {
     public boolean deletarProfissional(int id) {
         String sql = "DELETE FROM profissionais WHERE id = ?";
         return deletar(sql,id);
+    }
+
+    public Profissional selecionarProfissional(int id) {
+        Profissional profissional = null;
+        String sql  = "SELECT * FROM profissionais WHERE id = ?";
+        try(Connection connection = ConnectionFactory.getConexao()){
+            PreparedStatement preStmt = connection.prepareStatement(sql);
+            preStmt.setInt(1,id);
+            ResultSet resultSet = preStmt.executeQuery();
+
+            while (resultSet.next()){
+                profissional = new Profissional(resultSet.getInt("id"),resultSet.getString("nome"),resultSet.getString("especialidade" ));
+            }
+
+            return profissional;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao encontrar serviço");
+        }
     }
 }

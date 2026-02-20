@@ -102,4 +102,9 @@ public class MenuServico {
         servicoController.deletarServico(id);
         System.out.println("Serviço deletado com sucesso!");
     }
+
+    private Servico selecionarServico(int id){
+        Servico servico = servicoController.selecionarServico(id);
+        return servico;
+    }
 }

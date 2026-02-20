@@ -49,4 +49,23 @@ public class ServicoDAO extends BaseDAO {
         String sql = "DELETE FROM servicos WHERE id = ?";
         return deletar(sql,id);
     }
+
+    public Servico selecionarServico(int id) {
+        Servico servico = null;
+        String sql  = "SELECT * FROM servicos WHERE id = ?";
+        try(Connection connection = ConnectionFactory.getConexao()){
+            PreparedStatement preStmt = connection.prepareStatement(sql);
+            preStmt.setInt(1,id);
+            ResultSet resultSet = preStmt.executeQuery();
+
+            while (resultSet.next()){
+                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getInt("duracaoMinutos") );
+            }
+
+            return servico;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao encontrar serviço");
+        }
+
+    }
 }

@@ -2,6 +2,7 @@ package br.com.sistemaDeAgendamento.service;
 
 import br.com.sistemaDeAgendamento.DAO.ProfissionalDAO;
 import br.com.sistemaDeAgendamento.model.Profissional;
+import br.com.sistemaDeAgendamento.model.Servico;
 
 import java.util.List;
 
@@ -47,5 +48,17 @@ public class ProfissionalService {
         if(!respostaDAO){
             throw new RuntimeException("Profissional não encontrado");
         }
+    }
+
+    public Profissional selecionarProfissional(int id) {
+        if(id <=0 ){
+            throw new RuntimeException("Id inválido");
+        }
+        Profissional profissional = profissionalDAO.selecionarProfissional(id);
+        if(profissional == null){
+            throw new RuntimeException("Nenhum profissional encontrado");
+        }
+        return profissional;
+
     }
 }

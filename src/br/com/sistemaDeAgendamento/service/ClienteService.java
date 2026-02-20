@@ -68,4 +68,14 @@ public class ClienteService {
         }
     }
 
+    public Cliente selecionarCli(String numeroCliente) {
+        if(numeroCliente.isBlank()){
+            throw new RuntimeException("Número do cliente inválido");
+        }
+        Cliente cliente = clienteDAO.selecionarCli(numeroCliente);
+        if (cliente == null){
+            throw new RuntimeException("Cliente não encontrado");
+        }
+        return cliente;
+    }
 }

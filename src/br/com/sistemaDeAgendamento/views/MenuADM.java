@@ -22,23 +22,8 @@ public class MenuADM {
                 menuProfissional.opcoesProfissional(scanner);
             } else if (opcaoMenu == 3) {
                 menuServico.opcoesServico(scanner);
-
             }
         }while (opcaoMenu !=0);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

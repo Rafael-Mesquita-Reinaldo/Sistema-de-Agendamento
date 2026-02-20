@@ -1,6 +1,7 @@
 package br.com.sistemaDeAgendamento.DAO;
 
 import br.com.sistemaDeAgendamento.infra.ConnectionFactory;
+import br.com.sistemaDeAgendamento.model.Servico;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,5 +46,4 @@ public abstract class BaseDAO {
             throw new RuntimeException("Erro ao deletar dados do Banco",e);
         }
     }
-
 }

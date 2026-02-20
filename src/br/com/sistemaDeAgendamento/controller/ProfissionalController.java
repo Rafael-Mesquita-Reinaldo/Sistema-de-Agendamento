@@ -1,6 +1,5 @@
 package br.com.sistemaDeAgendamento.controller;
 
-import br.com.sistemaDeAgendamento.model.Cliente;
 import br.com.sistemaDeAgendamento.model.Profissional;
 import br.com.sistemaDeAgendamento.service.ProfissionalService;
 
@@ -27,5 +26,10 @@ public class ProfissionalController {
 
     public void deletarProfissional(int id) {
         profissionalService.deletarProfissional(id);
+    }
+
+
+    public Profissional selecionarProfissional(int id) {
+        return profissionalService.selecionarProfissional(id);
     }
 }

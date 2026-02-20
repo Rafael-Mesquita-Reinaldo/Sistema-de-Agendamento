@@ -30,4 +30,8 @@ public class ServicoController {
     public void deletarServico(int id) {
         servicoService.deletarServico(id);
     }
+
+    public Servico selecionarServico(int id) {
+        return servicoService.selecionarServico(id);
+    }
 }

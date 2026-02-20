@@ -1,20 +1,33 @@
 package br.com.sistemaDeAgendamento.model;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Agendamento {
     private  int id;
     private Cliente cliente;
     private Profissional profissional;
     private Servico servico;
-    private LocalDateTime dataHora;
+    private LocalDate data;
+    private LocalTime hora;
 
 
-    public Agendamento( Cliente cliente, Profissional profissional, Servico servico, LocalDateTime dataHora) {
+    public Agendamento( Cliente cliente, Profissional profissional, Servico servico,LocalDate data, LocalTime hora) {
         this.cliente = cliente;
         this.profissional = profissional;
         this.servico = servico;
-        this.dataHora = dataHora;
+        this.data = data;
+        this.hora = hora;
+    }
+
+    public Agendamento(int id, Cliente cliente, Profissional profissional, Servico servico, LocalDate data, LocalTime hora) {
+        this.id = id;
+        this.cliente = cliente;
+        this.profissional = profissional;
+        this.servico = servico;
+        this.data = data;
+        this.hora = hora;
     }
 
     public int getId() {
@@ -45,11 +58,19 @@ public class Agendamento {
         this.servico = servico;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 }

@@ -51,4 +51,15 @@ public class ServicoService {
             throw new RuntimeException("Serviço não encontrado");
         }
     }
+
+    public Servico selecionarServico(int id) {
+        if(id>=0){
+            throw new RuntimeException("ID inválido");
+        }
+        Servico servico = servicoDAO.selecionarServico(id);
+        if( servico == null){
+            throw new RuntimeException("Nenhum serviço encontrado");
+        }
+        return servico;
+    }
 }

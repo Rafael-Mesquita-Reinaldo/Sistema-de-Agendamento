@@ -2,6 +2,7 @@ package br.com.sistemaDeAgendamento.DAO;
 
 import br.com.sistemaDeAgendamento.infra.ConnectionFactory;
 import br.com.sistemaDeAgendamento.model.Cliente;
+import br.com.sistemaDeAgendamento.model.Profissional;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,5 +55,23 @@ public class ClienteDAO  extends BaseDAO{
     public boolean deletarCli(int id){
         String sql = "DELETE FROM clientes WHERE id = ?";
         return deletar(sql,id);
+    }
+
+    public Cliente selecionarCli(String numeroCliente) {
+        Cliente cliente =null;
+        String sql  = "SELECT * FROM clientes WHERE telefone = ?";
+        try(Connection connection = ConnectionFactory.getConexao()){
+            PreparedStatement preStmt = connection.prepareStatement(sql);
+            preStmt.setString(1,numeroCliente);
+            ResultSet resultSet = preStmt.executeQuery();
+
+            while (resultSet.next()){
+               cliente = new Cliente(resultSet.getInt("id"),resultSet.getString("nome"),resultSet.getString("telefone"),resultSet.getString("email"));
+            }
+            return cliente;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao encontrar serviço");
+        }
     }
 }
