@@ -16,6 +16,10 @@ public class Servico {
         this.duracaoMinutos = duracaoMinutos;
     }
 
+    public Servico(String descricao) {
+        this.descricao = descricao;
+    }
+
     public int getId() {
         return id;
     }

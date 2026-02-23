@@ -17,6 +17,9 @@ public class Profissional {
         this.nome = nome;
         this.especialidade = especialidade;
     }
+    public Profissional(String nome){
+        this.nome = nome;
+    }
 
     public int getId() {
         return id;

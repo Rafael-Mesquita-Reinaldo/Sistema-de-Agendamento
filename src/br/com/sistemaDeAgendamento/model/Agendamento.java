@@ -73,4 +73,9 @@ public class Agendamento {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\nCliente: %s\nProfissional: %s\nDescrição do Serviço: %s\n Data/Hora:"+ getData() + getHora(),getId(),getCliente().getNome(),getProfissional().getNome(),getServico().getDescricao());
+    }
 }

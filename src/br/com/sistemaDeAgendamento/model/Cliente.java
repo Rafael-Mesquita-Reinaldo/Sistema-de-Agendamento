@@ -18,6 +18,9 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
     }
+    public Cliente(String nome){
+        this.nome = nome;
+    }
 
     public int getId() {
         return id;

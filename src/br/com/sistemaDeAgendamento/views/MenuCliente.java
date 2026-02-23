@@ -74,7 +74,7 @@ public class MenuCliente {
 
         try {
             clienteController.cadastrarCli(nome,telefone,email);
-            System.out.println("Cliente cadastrado com sucesso!");
+            System.out.println("Cliente cadastrado com sucesso");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -95,37 +95,33 @@ public class MenuCliente {
         System.out.println("Lista de clientes: ");
         listarCliente(scanner);
 
+        System.out.print("ID do cliente que deseja atualizar: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.print("Deseja atulizar qual dado\n1 - nome\n2 - telefone\n3 - email\nEscolhar(Digita o número):");
         int opcao = scanner.nextInt();
         scanner.nextLine();
 
         if(opcao == 1){
-            System.out.print("ID do cliente: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
 
             System.out.print("Novo nome: ");
             String nomeNovo = scanner.nextLine();
-
             clienteController.atualizarCliNome(id,nomeNovo);
+            System.out.println("Nome alterado com sucesso");
         } else if (opcao == 2) {
-            System.out.print("ID do cliente: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
 
             System.out.print("Novo telefone: ");
             String novoTelefone = scanner.nextLine();
             clienteController.atualizarCliTelefone(id,novoTelefone);
+            System.out.println("Telefone alterado com sucesso");
 
         }else if (opcao == 3) {
-
-            System.out.print("ID do cliente: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
 
             System.out.print("Novo email: ");
             String novoEmail = scanner.nextLine();
             clienteController.atualizarCliEmail(id,novoEmail);
+            System.out.println("Email atualizado com sucesso");
         }
     }
 
