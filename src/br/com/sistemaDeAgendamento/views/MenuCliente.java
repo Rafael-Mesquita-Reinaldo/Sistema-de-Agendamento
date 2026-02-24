@@ -8,8 +8,9 @@ import java.util.Scanner;
 
 public class MenuCliente {
     private final ClienteController clienteController = new ClienteController();
+    private final MenuAgendamento menuAgendamento = new MenuAgendamento();
 
-    public void menu(Scanner scanner){
+    public void menuCli(Scanner scanner){
         System.out.print("1 - Cadastro\n2 - Agendadmento\nEscolha(Digita o número):");
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -26,12 +27,12 @@ public class MenuCliente {
             String email = scanner.nextLine();
             try {
                 clienteController.cadastrarCli(nome,telefone,email);
-                System.out.print("Cliente cadastrado com sucesso!");
+                System.out.print("Cadastrado com sucesso!");
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         }else {
-            //ainda vou adicionar
+            menuAgendamento.cadastrarAgendamentoCli(scanner);
         }
     }
 
@@ -49,7 +50,7 @@ public class MenuCliente {
                     cadastrarCliente(scanner);
                     break;
                 case 2:
-                    listarCliente(scanner);
+                    listarCliente();
                     break;
                 case 3:
                     atualizarCliente(scanner);
@@ -80,7 +81,7 @@ public class MenuCliente {
         }
     }
 
-    private void listarCliente(Scanner scanner){
+    private void listarCliente(){
         List<Cliente> clientes = clienteController.listarCli();
         if (clientes.isEmpty()){
             System.out.println("Nenhum cliente cadastrado");
@@ -93,7 +94,7 @@ public class MenuCliente {
 
     private void atualizarCliente(Scanner scanner){
         System.out.println("Lista de clientes: ");
-        listarCliente(scanner);
+        listarCliente();
 
         System.out.print("ID do cliente que deseja atualizar: ");
         int id = scanner.nextInt();
@@ -128,7 +129,7 @@ public class MenuCliente {
 
     private void deletarCliente(Scanner scanner){
         System.out.println("Lista de clientes: ");
-        listarCliente(scanner);
+        listarCliente();
 
         System.out.print("ID do cliente: ");
         int id = scanner.nextInt();

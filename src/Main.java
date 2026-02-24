@@ -17,7 +17,7 @@ public class Main {
            menuADM.menu(scanner);
        }else {
            MenuCliente menuCliente = new MenuCliente();
-           menuCliente.menu(scanner);
+           menuCliente.menuCli(scanner);
        }
 
     }

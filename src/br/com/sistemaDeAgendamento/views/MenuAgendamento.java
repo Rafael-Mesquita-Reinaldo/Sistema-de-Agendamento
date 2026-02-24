@@ -48,7 +48,42 @@ public class MenuAgendamento {
 
     private void cadastrarAgendamento(Scanner scanner) {
 
-        System.out.println("Digita o número do Cliente: ");
+        System.out.print("Digita o número do Cliente: ");
+        String numeroCliente = scanner.nextLine();
+        Cliente cliente  = clienteController.selecionarCli(numeroCliente);
+
+        System.out.println("Seleciona um serviço pelo ID");
+        servicoController.listarServico();
+        System.out.print("Escolhar: ");
+        int opcaoServico = scanner.nextInt();
+        scanner.nextLine();
+        Servico servico = servicoController.selecionarServico(opcaoServico);
+
+        System.out.println("Seleciona um profissional pelo ID ");
+        profissionalController.listarProfissional();
+        System.out.print("Escolhar: ");
+        int opcaoProfissional = scanner.nextInt();
+        scanner.nextLine();
+        Profissional profissional = profissionalController.selecionarProfissional(opcaoProfissional);
+
+        System.out.println("Escolha o dia e mês(dd/mm): ");
+        String dataAtendimento = scanner.nextLine();
+        LocalDate data = LocalDate.parse(dataAtendimento+"/"+LocalDate.now().getYear(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        System.out.println("Escolha o horário(H:M): ");
+        LocalTime horario =  LocalTime.parse(scanner.nextLine());
+
+        try {
+            agendamentoController.cadastrarAgendamento(cliente,servico,profissional,data,horario);
+            System.out.println("Agendamento realizado com sucesso!");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    // Menu de agendamento para cliente
+    public void cadastrarAgendamentoCli(Scanner scanner) {
+
+        System.out.print("Digita seu telefone do Cliente: ");
         String numeroCliente = scanner.nextLine();
         Cliente cliente  = clienteController.selecionarCli(numeroCliente);
 
