@@ -16,10 +16,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuAgendamento {
-    private ServicoController servicoController = new ServicoController();
-    private ProfissionalController profissionalController = new ProfissionalController();
-    private ClienteController clienteController  = new ClienteController();
-    private AgendamentoController agendamentoController = new AgendamentoController();
+    private final ServicoController servicoController = new ServicoController();
+    private final ProfissionalController profissionalController = new ProfissionalController();
+    private final ClienteController clienteController  = new ClienteController();
+    private final AgendamentoController agendamentoController = new AgendamentoController();
 
     public void opcoesAgendamento(Scanner scanner) {
         int opcaoServico;

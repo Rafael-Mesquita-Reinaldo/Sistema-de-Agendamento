@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuProfissional {
-    private ProfissionalController profissionalController = new ProfissionalController();
+    private final ProfissionalController profissionalController = new ProfissionalController();
 
     public void opcoesProfissional(Scanner scanner){
         int opcao;
@@ -20,7 +20,7 @@ public class MenuProfissional {
                     cadastrarProfissional(scanner);
                     break;
                 case 2:
-                    listarProfissional(scanner);
+                    listarProfissional();
                     break;
                 case 3:
                     atualizarProfissional(scanner);
@@ -50,7 +50,7 @@ public class MenuProfissional {
         }
     }
 
-    private void listarProfissional(Scanner scanner) {
+    private void listarProfissional() {
         List<Profissional> profissionais = profissionalController.listarProfissional();
         if(profissionais.isEmpty()){
             throw new RuntimeException("Nenhum profissional cadastrado");
@@ -63,7 +63,7 @@ public class MenuProfissional {
 
     private void atualizarProfissional(Scanner scanner) {
         System.out.println("Lista de profissionais: ");
-        listarProfissional(scanner);
+        listarProfissional();
 
         System.out.print("Deseja atulizar qual dado\n1 - nome\n2 - especialidade\n(Digita o número):");
         int opcao = scanner.nextInt();
@@ -96,7 +96,7 @@ public class MenuProfissional {
 
     private void deletarProfissional(Scanner scanner) {
         System.out.println("Lista de profissionais: ");
-        listarProfissional(scanner);
+        listarProfissional();
 
         System.out.print("ID do profissional: ");
         int id = scanner.nextInt();

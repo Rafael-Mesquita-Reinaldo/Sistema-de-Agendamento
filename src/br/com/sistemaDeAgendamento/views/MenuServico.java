@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuServico {
-    private ServicoController servicoController = new ServicoController();
+    private final ServicoController servicoController = new ServicoController();
 
     public void opcoesServico(Scanner scanner) {
         int opcaoServico;
@@ -21,7 +21,7 @@ public class MenuServico {
                     cadastrarServico(scanner);
                     break;
                 case 2:
-                    listarServico(scanner);
+                    listarServico();
                     break;
                 case 3:
                     atualizarServico(scanner);
@@ -49,7 +49,7 @@ public class MenuServico {
 
     }
 
-    private void listarServico(Scanner scanner) {
+    private void listarServico() {
         List<Servico> servicos = servicoController.listarServico();
         if(servicos.isEmpty()){
             System.out.println("Nenhum serviço cadastrado");
@@ -62,7 +62,7 @@ public class MenuServico {
 
     private void atualizarServico(Scanner scanner) {
         System.out.println("Lista de Serviços:");
-        listarServico(scanner);
+        listarServico();
         System.out.print("Deseja atulizar qual dado\n1 - Descrição\n2 - Duração do serviço\n(Digita o número):");
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -95,7 +95,7 @@ public class MenuServico {
 
     private void deletarServico(Scanner scanner) {
         System.out.println("Lista de Serviços:");
-        listarServico(scanner);
+        listarServico();
         System.out.print("ID do Serviço: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -103,8 +103,4 @@ public class MenuServico {
         System.out.println("Serviço deletado com sucesso!");
     }
 
-    private Servico selecionarServico(int id){
-        Servico servico = servicoController.selecionarServico(id);
-        return servico;
-    }
 }
