@@ -70,8 +70,9 @@ public class MenuAgendamento {
         String dataAtendimento = scanner.nextLine();
         LocalDate data = LocalDate.parse(dataAtendimento+"/"+LocalDate.now().getYear(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         System.out.println("Escolha o horário(H:M): ");
-        LocalTime horario =  LocalTime.parse(scanner.nextLine());
+        LocalTime horario =  LocalTime.parse(scanner.nextLine(),formatter);
 
         try {
             agendamentoController.cadastrarAgendamento(cliente,servico,profissional,data,horario);

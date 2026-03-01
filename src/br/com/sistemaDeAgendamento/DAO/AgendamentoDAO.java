@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AgendamentoDAO extends BaseDAO {
     public boolean verificarConflitoDAO(int idProfissional,LocalDate data, LocalTime horario) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM agendamentos WHERE profissionais_id = ? AND data = ? AND hora = ?) ";
+        String sql = "SELECT EXISTS(SELECT 1 FROM agendamentos WHERE profissional_id = ? AND data_agendamento = ? AND hora_agendamento = ?) ";
         try (Connection connection = ConnectionFactory.getConexao()) {
             PreparedStatement preStmt = connection.prepareStatement(sql);
             preStmt.setInt(1, idProfissional);
@@ -36,7 +36,7 @@ public class AgendamentoDAO extends BaseDAO {
     }
 
     public boolean cadastrarAgendamento(Agendamento agendamento) {
-        String sql = "INSERT INTO agendamentos(cliente_id,profissional_id,servico_id,data,hora)";
+        String sql = "INSERT INTO agendamentos(cliente_id,profissional_id,servico_id,data_agendamento,hora_agendamento)  VALUES (?, ?, ?, ?, ?)";
         return cadastrar(sql,agendamento.getCliente().getId(),agendamento.getProfissional().getId(),agendamento.getServico().getId(),agendamento.getData(),agendamento.getHora());
     }
 
@@ -44,20 +44,20 @@ public class AgendamentoDAO extends BaseDAO {
     public List<Agendamento> listarAgendamento() {
         String sql = """
                 SELECT
-                    agend.id as id,
-                    cli.nome AS cliente,
-                    profi.nome AS profissional,
-                    serv.descricao AS descricao,
-                    agend.data AS data,
-                    agend.hora AS hora
-                FROM
-                    agendamentos agend
-                INNER JOIN
-                    clientes cli ON cli.id = agend.cliente_id
-                INNER JOIN
-                    profissionais profi ON profi.id = agend.profissional_id
-                INNER JOIN
-                    servicos serv ON serv.id = agend.servico_id""";
+                   agend.id as id,
+                   cli.nome AS cliente,
+                   profi.nome AS profissional,
+                   serv.descricao AS descricao,
+                   agend.data_agendamento AS data,
+                   agend.hora_agendamento AS hora
+               FROM
+                   agendamentos agend
+               INNER JOIN
+                   clientes cli ON cli.id = agend.cliente_id
+               INNER JOIN
+                   profissionais profi ON profi.id = agend.profissional_id
+               INNER JOIN
+                   servicos serv ON serv.id = agend.servico_id""";
 
 
         List<Agendamento> agendamentos = new ArrayList<>();
@@ -97,7 +97,7 @@ public class AgendamentoDAO extends BaseDAO {
     }
 
     public boolean atualizarDataHora(int idAgendamento, LocalDate data, LocalTime novoHorario) {
-        String sql = "UPDATE agendamentos SET data = ?, hora = ? WHERE id  = ?";
+        String sql = "UPDATE agendamentos SET data_agendamento = ?, hora_agendamento = ? WHERE id  = ?";
         return atualizar(sql,data,novoHorario,idAgendamento);
     }
 
