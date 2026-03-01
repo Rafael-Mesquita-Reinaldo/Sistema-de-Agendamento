@@ -1,7 +1,6 @@
+package br.com.sistemaDeAgendamento.views;
+
 import br.com.sistemaDeAgendamento.model.TipoUsuario;
-import br.com.sistemaDeAgendamento.views.LoginUsuario;
-import br.com.sistemaDeAgendamento.views.MenuADM;
-import br.com.sistemaDeAgendamento.views.MenuCliente;
 
 import java.util.Scanner;
 
