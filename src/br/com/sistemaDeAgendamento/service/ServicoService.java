@@ -53,7 +53,7 @@ public class ServicoService {
     }
 
     public Servico selecionarServico(int id) {
-        if(id>=0){
+        if(id<=0){
             throw new RuntimeException("ID inválido");
         }
         Servico servico = servicoDAO.selecionarServico(id);

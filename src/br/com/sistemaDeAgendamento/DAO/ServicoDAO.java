@@ -13,7 +13,7 @@ import java.util.List;
 public class ServicoDAO extends BaseDAO {
 
     public boolean cadastrarServico(Servico servico){
-        String sql  = "INSERT INTO servicos(descricao,duracaoMinutos) VALUES(?,?)";
+        String sql  = "INSERT INTO servicos(descricao,duracao_minutos) VALUES(?,?)";
         return cadastrar(sql,servico.getDescricao(),servico.getDuracaoMinutos());
     }
 
@@ -25,7 +25,7 @@ public class ServicoDAO extends BaseDAO {
             ResultSet resultSet = prestmt.executeQuery();
 
             while (resultSet.next()){
-                Servico servico = new Servico(resultSet.getInt("id"),resultSet.getString("descricao"),resultSet.getInt("duracaoMinutos"));
+                Servico servico = new Servico(resultSet.getInt("id"),resultSet.getString("descricao"),resultSet.getInt("duracao_minutos"));
                 servicos.add(servico);
             }
             return servicos;
@@ -41,7 +41,7 @@ public class ServicoDAO extends BaseDAO {
     }
 
     public boolean atualizarServDuracao(int id, int novaDuracao) {
-        String sql = "UPDATE servicos SET duracaoMinutos = ? WHERE id = ?";
+        String sql = "UPDATE servicos SET duracao_minutos = ? WHERE id = ?";
         return atualizar(sql, novaDuracao, id);
     }
 
@@ -59,7 +59,7 @@ public class ServicoDAO extends BaseDAO {
             ResultSet resultSet = preStmt.executeQuery();
 
             while (resultSet.next()){
-                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getInt("duracaoMinutos") );
+                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getInt("duracao_minutos") );
             }
 
             return servico;
