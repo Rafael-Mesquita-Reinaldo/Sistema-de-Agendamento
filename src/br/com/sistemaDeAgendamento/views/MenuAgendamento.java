@@ -52,16 +52,27 @@ public class MenuAgendamento {
         String numeroCliente = scanner.nextLine();
         Cliente cliente  = clienteController.selecionarCli(numeroCliente);
 
+        List<Servico> servicos = servicoController.listarServico();
+        System.out.println("Lista de serviços:");
+        for (Servico servico: servicos){
+            System.out.println(servico);
+        }
+
         System.out.println("Seleciona um serviço pelo ID");
         servicoController.listarServico();
-        System.out.print("Escolhar: ");
+        System.out.print("Escolha: ");
         int opcaoServico = scanner.nextInt();
         scanner.nextLine();
         Servico servico = servicoController.selecionarServico(opcaoServico);
 
+        List<Profissional> profissionais = profissionalController.listarProfissional();
+        System.out.println("Lista de profissionais:");
+        for (Profissional profissional: profissionais){
+            System.out.println(profissional);
+        }
         System.out.println("Seleciona um profissional pelo ID ");
         profissionalController.listarProfissional();
-        System.out.print("Escolhar: ");
+        System.out.print("Escolha: ");
         int opcaoProfissional = scanner.nextInt();
         scanner.nextLine();
         Profissional profissional = profissionalController.selecionarProfissional(opcaoProfissional);
@@ -84,20 +95,31 @@ public class MenuAgendamento {
     // Menu de agendamento para cliente
     public void cadastrarAgendamentoCli(Scanner scanner) {
 
-        System.out.print("Digita seu telefone do Cliente: ");
+        System.out.print("Digita seu telefone: ");
         String numeroCliente = scanner.nextLine();
         Cliente cliente  = clienteController.selecionarCli(numeroCliente);
 
+        List<Servico> servicos = servicoController.listarServico();
+        System.out.println("Lista de serviços:");
+        for (Servico servico: servicos){
+            System.out.println(servico);
+        }
+
         System.out.println("Seleciona um serviço pelo ID");
         servicoController.listarServico();
-        System.out.print("Escolhar: ");
+        System.out.print("Escolha: ");
         int opcaoServico = scanner.nextInt();
         scanner.nextLine();
         Servico servico = servicoController.selecionarServico(opcaoServico);
 
+        List<Profissional> profissionais = profissionalController.listarProfissional();
+        System.out.println("Lista de profissionais:");
+        for (Profissional profissional: profissionais){
+            System.out.println(profissional);
+        }
         System.out.println("Seleciona um profissional pelo ID ");
         profissionalController.listarProfissional();
-        System.out.print("Escolhar: ");
+        System.out.print("Escolha: ");
         int opcaoProfissional = scanner.nextInt();
         scanner.nextLine();
         Profissional profissional = profissionalController.selecionarProfissional(opcaoProfissional);
@@ -179,6 +201,11 @@ public class MenuAgendamento {
             System.out.println("Serviço alterado com sucesso");
 
         }else if (opcao == 4) {
+            List<Profissional> profissionais = profissionalController.listarProfissional();
+            System.out.println("Lista de profissionais:");
+            for (Profissional profissional: profissionais){
+                System.out.println(profissional);
+            }
             System.out.println("Digita o ID do profissional:");
             int idProfissional = scanner.nextInt();
             scanner.nextLine();

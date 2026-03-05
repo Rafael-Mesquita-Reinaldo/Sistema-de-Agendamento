@@ -76,6 +76,6 @@ public class Agendamento {
 
     @Override
     public String toString() {
-        return String.format("ID: %d\nCliente: %s\nProfissional: %s\nDescrição do Serviço: %s\n Data/Hora:"+ getData() + getHora(),getId(),getCliente().getNome(),getProfissional().getNome(),getServico().getDescricao());
+        return String.format("ID: %d\nCliente: %s\nProfissional: %s\nDescrição do Serviço: %s\nData/Hora:"+ getData() + " "+getHora(),getId(),getCliente().getNome(),getProfissional().getNome(),getServico().getDescricao());
     }
 }
